@@ -25,6 +25,9 @@
             "aot": true,
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.sass"],
+            "stylePreprocessorOptions": {
+              "includePaths": ["src/sass"]
+            },
             "scripts": []
           },
           "configurations": {

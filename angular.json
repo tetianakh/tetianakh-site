@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "tetianakh-site"
+    }
+  },
+  "defaultProject": "tetianakh-site",
+  "cli": {
+    "analytics": false
+  }
 }

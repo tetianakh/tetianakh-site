@@ -11,6 +11,7 @@ import { ResumeComponent } from './home/resume/resume.component';
 import { ResumeCardComponent } from './home/resume/resume-card/resume-card.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProjectsComponent } from './home/projects/projects.component';
+import { ContactComponent } from './home/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ProjectsComponent } from './home/projects/projects.component';
     ResumeCardComponent,
     FooterComponent,
     ProjectsComponent,
+    ContactComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, NgbModule],
   providers: [],

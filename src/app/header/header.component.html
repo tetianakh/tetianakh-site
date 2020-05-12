@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark py-3">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark py-3 fixed-top">
   <div class="container">
-    <a class="navbar-brand" routerLink="/">@tetianakh</a>
+    <a class="navbar-brand" routerLink="/" fragment="welcome">@tetianakh</a>
 
     <button
       class="navbar-toggler"
@@ -18,7 +18,10 @@
         <li class="nav-item">
           <a
             class="nav-link"
-            [routerLink]="'.'"
+            routerLink="/home"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            fragment="resume"
             (click)="isMenuCollapsed = true"
             >Resume</a
           >
@@ -26,7 +29,10 @@
         <li class="nav-item">
           <a
             class="nav-link"
-            [routerLink]="'.'"
+            routerLink="/home"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            fragment="projects"
             (click)="isMenuCollapsed = true"
             >Pet Projects</a
           >
@@ -34,7 +40,10 @@
         <li class="nav-item">
           <a
             class="nav-link"
-            [routerLink]="'.'"
+            routerLink="/home"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            fragment="contact"
             (click)="isMenuCollapsed = true"
             >Contact</a
           >

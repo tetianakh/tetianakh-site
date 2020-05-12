@@ -2,7 +2,7 @@
   <div class="primary-overlay text-white">
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 offset-lg-2 col-md-8 offset-md-2 text-center">
+        <div class="col-md-8 offset-md-2 text-center">
           <h1 class="display-2 mt-5 pt-5">Welcome</h1>
           <p class="lead">
             My name is Tetiana Khotiaintseva, I am a full stack software
@@ -13,8 +13,11 @@
             Platform, and I build UI for Google Kubernetes Engine and Anthos.
           </p>
           <p>This page is currently a work in progress.</p>
-          <button class="btn btn-secondary btn-lg text-white">
-            <i class="fas fa-arrow-right"></i> Resume
+          <button
+            class="btn btn-secondary btn-lg text-white"
+            (click)="scrollToResume()"
+          >
+            Resume
           </button>
         </div>
       </div>

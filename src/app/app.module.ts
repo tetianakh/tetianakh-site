@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { ResumeComponent } from './home/resume/resume.component';
 import { ResumeCardComponent } from './home/resume/resume-card/resume-card.component';
 import { FooterComponent } from './footer/footer.component';
+import { ProjectsComponent } from './home/projects/projects.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FooterComponent } from './footer/footer.component';
     ResumeComponent,
     ResumeCardComponent,
     FooterComponent,
+    ProjectsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, NgbModule],
   providers: [],

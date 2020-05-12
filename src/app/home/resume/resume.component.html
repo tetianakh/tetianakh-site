@@ -12,45 +12,62 @@
           Employment history
         </h3>
         <!-- Google SWE -->
-        <div class="card my-2">
-          <div class="card-body text-dark">
-            <h4 class="card-title">Software Engineer at Google</h4>
-            <h6 class="card-subtitle">May 2020 - present</h6>
-            <p class="card-text">
-              I work on the Google Cloud Console, which is the UI for Google
-              Cloud Platform, and I build UI for
-              <a href="https://cloud.google.com/kubernetes-engine"
-                >Google Kubernetes Engine</a
-              >
-              and
-              <a href="https://cloud.google.com/anthos" target="_blank"
-                >Anthos</a
-              >.
-            </p>
-          </div>
-        </div>
+        <app-resume-card
+          title="Software Engineer at Google"
+          timeRange="May 2020 - present"
+        >
+          <p>
+            I work on the Google Cloud Console, which is the UI for Google Cloud
+            Platform, and I build UI for
+            <a href="https://cloud.google.com/kubernetes-engine"
+              >Google Kubernetes Engine</a
+            >
+            and
+            <a href="https://cloud.google.com/anthos" target="_blank">Anthos</a>
+            (Angular, Typescript, Java).
+          </p>
+        </app-resume-card>
 
         <!-- Google TSE -->
-        <div class="card my-2">
-          <div class="card-body text-dark">
-            <h4 class="card-title">Technical Solutions Engineer at Google</h4>
-            <h6 class="card-subtitle">August 2020 - May 2020</h6>
-            <p class="card-text">
-              I supported Google Cloud Platform infrastructure product, mainly
-              <a href="https://cloud.google.com/kubernetes-engine"
-                >Google Kubernetes Engine</a
-              >
-              and
-              <a href="https://cloud.google.com/compute" target="_blank"
-                >Google Compute Engine</a
-              >.
-            </p>
-            <p class="card-text">
-              I also worked on supportability of SAP deployments on Google Cloud
-              Platform.
-            </p>
-          </div>
-        </div>
+        <app-resume-card
+          title="Technical Solutions Engineer at Google"
+          timeRange="August 2020 - May 2020"
+        >
+          <p>
+            I supported Google Cloud Platform infrastructure product, mainly
+            <a href="https://cloud.google.com/kubernetes-engine"
+              >Google Kubernetes Engine</a
+            >
+            and
+            <a href="https://cloud.google.com/compute" target="_blank"
+              >Google Compute Engine</a
+            >.
+          </p>
+          <p>
+            I also worked on supportability of SAP deployments on Google Cloud
+            Platform.
+          </p>
+        </app-resume-card>
+
+        <!-- Allegro -->
+        <app-resume-card
+          title="Software Engineer at Allegro"
+          timeRange="August 2017-July 2019"
+        >
+          <p>
+            Built a "backend for frontend" which unified API for web and mobile
+            applications (Kotlin, Spring Boot)
+          </p>
+          <p>
+            Converted a data analysis pipeline into a full-fledged application
+            -- rewrote and redesigned backend (Scala, Spring Boot), created
+            frontend (Vue.js).
+          </p>
+          <p>
+            Developed and maintained internal monitoring tools (Python,
+            AngularJS, Vue.js).
+          </p>
+        </app-resume-card>
       </div>
     </div>
   </div>

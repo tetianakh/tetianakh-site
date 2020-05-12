@@ -9,6 +9,7 @@ import { WelcomeComponent } from './home/welcome/welcome.component';
 import { HomeComponent } from './home/home.component';
 import { ResumeComponent } from './home/resume/resume.component';
 import { ResumeCardComponent } from './home/resume/resume-card/resume-card.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ResumeCardComponent } from './home/resume/resume-card/resume-card.compo
     HomeComponent,
     ResumeComponent,
     ResumeCardComponent,
+    FooterComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, NgbModule],
   providers: [],

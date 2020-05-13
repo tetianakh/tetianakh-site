@@ -1,9 +1,9 @@
-<div class="card my-2">
-  <div class="card-body text-dark">
+<div class="card my-2 text-dark">
+  <div class="card-header">
     <h5 class="card-title">{{ title }}</h5>
-    <h6 class="card-subtitle">{{ timeRange }}</h6>
-    <div class="card-text">
-      <ng-content></ng-content>
-    </div>
+    <h6 class="card-subtitle">{{ subtitle }}</h6>
+  </div>
+  <div class="card-body">
+    <ng-content></ng-content>
   </div>
 </div>

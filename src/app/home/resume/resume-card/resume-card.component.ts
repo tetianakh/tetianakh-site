@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-resume-card',
@@ -7,8 +7,11 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ResumeCardComponent implements OnInit {
   @Input() title: string;
-  @Input() timeRange: string;
-  constructor() {}
+  @Input() subtitle: string;
+  content?: string;
+  constructor(private el: ElementRef) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.content = this.el.nativeElement;
+  }
 }

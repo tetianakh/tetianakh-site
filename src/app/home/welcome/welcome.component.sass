@@ -1,9 +1,10 @@
 @import "variables"
 
 #welcome
-  background: url('../../../assets/welcome-background.jpg')
+  background: url('../../../assets/welcome-background.jpg') no-repeat center
+  background-size: cover
   position: relative
-  min-height: 600px
+  min-height: 650px
 
   .primary-overlay
     position: absolute
@@ -13,8 +14,17 @@
     height: 100%
     background: $primary-overlay
 
+  h1
+    margin-top: 220px
+
   @media screen and (max-width: $md-max-width)
     min-height: 500px
-
+    h1
+      margin-top: 150px
     p
       font-size: 1rem
+
+  @media screen and (min-width: $xl-min-width)
+    min-height: 800px
+    h1
+      margin-top: 250px

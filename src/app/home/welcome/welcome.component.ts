@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { scrollToId } from 'src/app/shared/scroll.utils';
 
 @Component({
   selector: 'app-welcome',
@@ -11,8 +12,10 @@ export class WelcomeComponent implements OnInit {
   ngOnInit(): void {}
 
   scrollToResume() {
-    const element = document.querySelector('#resume');
-    console.log(element);
-    if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    scrollToId('resume');
+  }
+
+  scrollToContact() {
+    scrollToId('contact');
   }
 }

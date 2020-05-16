@@ -16,7 +16,7 @@ export class BlogComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.sub = this.blogService.posts.subscribe((posts) => {
-      this.posts = posts.slice().sort((a, b) => a.timestamp - b.timestamp);
+      this.posts = posts.slice().sort((a, b) => b.timestamp - a.timestamp);
     });
   }
   ngOnDestroy(): void {

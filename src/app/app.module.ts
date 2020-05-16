@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AngularFireModule } from '@angular/fire';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +15,12 @@ import { FooterComponent } from './footer/footer.component';
 import { ProjectsComponent } from './home/projects/projects.component';
 import { ContactComponent } from './home/contact/contact.component';
 import { BlogComponent } from './blog/blog.component';
+import { environment } from 'src/environments/environment';
+import { BlogPostPreviewComponent } from './blog/blog-post-preview/blog-post-preview.component';
+import { ShortenPipe } from './shared/shorten.pipe';
+import { NewPostComponent } from './blog/new-post/new-post.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PostComponent } from './blog/post/post.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +34,19 @@ import { BlogComponent } from './blog/blog.component';
     ProjectsComponent,
     ContactComponent,
     BlogComponent,
+    BlogPostPreviewComponent,
+    ShortenPipe,
+    NewPostComponent,
+    PostComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, NgbModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    HttpClientModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

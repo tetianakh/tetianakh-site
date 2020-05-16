@@ -1,0 +1,40 @@
+<section class="bg-light pt-5">
+  <h1 class="display-2 text-primary py-5 text-center">New post</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 pb-5">
+        <form [formGroup]="newPostForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="post-title">Title</label>
+            <input
+              type="text"
+              class="form-control"
+              id="post-title"
+              formControlName="title"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="post-body">Content</label>
+            <textarea
+              id="post-body"
+              rows="10"
+              class="form-control"
+              formControlName="body"
+            ></textarea>
+          </div>
+
+          <div>
+            <button
+              class="btn btn-primary float-right"
+              type="submit"
+              [disabled]="newPostForm.invalid"
+            >
+              Save Post
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

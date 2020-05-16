@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "tetianakh-site": {
+      "hosting": {
+        "tetianakh-site": [
+          "tetianakh-site"
+        ]
+      }
+    }
+  }
+}

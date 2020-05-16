@@ -1,0 +1,12 @@
+<section class="bg-primary pt-5 text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 pb-5">
+        <h1 class="py-5 text-white">
+          {{ post.title }}
+        </h1>
+        <div [innerHTML]="post.body"></div>
+      </div>
+    </div>
+  </div>
+</section>

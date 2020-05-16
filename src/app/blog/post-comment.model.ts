@@ -3,6 +3,6 @@ export class PostComment {
     public authorName: string,
     public authorId: string,
     public body: string,
-    public timestamp: Date
+    public timestamp: number
   ) {}
 }

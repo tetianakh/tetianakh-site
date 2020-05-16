@@ -22,6 +22,7 @@ import { NewPostComponent } from './blog/new-post/new-post.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PostComponent } from './blog/post/post.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { PostCommentComponent } from './blog/post-comment/post-comment.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     NewPostComponent,
     PostComponent,
     NotFoundComponent,
+    PostCommentComponent,
   ],
   imports: [
     BrowserModule,

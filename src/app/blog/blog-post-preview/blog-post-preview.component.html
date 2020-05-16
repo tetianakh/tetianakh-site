@@ -1,8 +1,17 @@
-<div class="media position-relative">
-  <!-- <img src="..." class="mr-3" alt="..."> -->
-  <div class="media-body">
-    <h5 class="mt-0">{{ post.title }}</h5>
-    <p>{{ post.body | shorten: 200 }}</p>
+<div class="card my-5 bg-white text-dark">
+  <div class="card-header">
+    <h2>{{ post.title }}</h2>
+    <div class="d-flex">
+      <div class="mr-auto">
+        {{ post.timestamp | date: "medium" }}
+      </div>
+      <div class="ml-auto">
+        <i class="fas fa-comment"></i> {{ post.comments.length }}
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="card-text">{{ postBody | shorten: 200 }}</p>
     <a [routerLink]="[post.id]" class="stretched-link">Read more</a>
   </div>
 </div>

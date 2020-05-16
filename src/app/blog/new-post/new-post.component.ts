@@ -30,7 +30,7 @@ export class NewPostComponent implements OnInit {
       this.newPostForm.value.body,
       [],
       'Tetiana Khotiaintseva',
-      new Date()
+      new Date().getTime()
     );
     const key = this.blogService.savePost(newPost);
     this.router.navigate(['blog', key]);

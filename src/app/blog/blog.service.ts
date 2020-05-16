@@ -23,7 +23,7 @@ export class BlogService {
                 p.payload.val().body,
                 p.payload.val().comments ? p.payload.val().comments : [],
                 p.payload.val().authorName,
-                new Date(p.payload.val().timestamp),
+                +p.payload.val().timestamp,
                 p.payload.val().authorId,
                 p.payload.key
               )
@@ -33,11 +33,15 @@ export class BlogService {
   }
 
   savePost(newPost: Post) {
-    return this.db.list('posts').push(newPost);
+    return this.db.list<Post>('posts').push(newPost);
   }
 
-  updatePost(updatedPost: Post) {
+  setPost(updatedPost: Post) {
     return this.db.list('posts').set(updatedPost.id, updatedPost);
+  }
+
+  updatePost(id: string, values: any) {
+    return this.db.list('posts').update(id, values);
   }
 
   deletePost(deletedPostId: string) {
@@ -45,6 +49,22 @@ export class BlogService {
   }
 
   getPostByKey(key: string) {
-    return this.db.object<Post>(`posts/${key}`).valueChanges();
+    return this.db
+      .object<Post>(`posts/${key}`)
+      .valueChanges()
+      .pipe(
+        map(
+          (post) =>
+            new Post(
+              post.title,
+              post.body,
+              post.comments ? post.comments : [],
+              post.authorName,
+              post.timestamp,
+              post.authorId,
+              key
+            )
+        )
+      );
   }
 }

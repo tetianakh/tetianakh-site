@@ -3,6 +3,8 @@ import { BlogService } from '../blog.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from '../post.model';
 import { Subscription } from 'rxjs';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { PostComment } from '../post-comment.model';
 
 @Component({
   selector: 'app-post',
@@ -14,6 +16,7 @@ export class PostComponent implements OnInit, OnDestroy {
   post: Post;
   keySub: Subscription;
   postSub: Subscription;
+  newCommentForm: FormGroup;
 
   constructor(
     private blogService: BlogService,
@@ -36,6 +39,10 @@ export class PostComponent implements OnInit, OnDestroy {
           this.post = post;
         });
     });
+
+    this.newCommentForm = new FormGroup({
+      body: new FormControl(null, [Validators.required]),
+    });
   }
 
   ngOnDestroy() {
@@ -45,5 +52,21 @@ export class PostComponent implements OnInit, OnDestroy {
     if (this.postSub) {
       this.postSub.unsubscribe();
     }
+  }
+
+  onSubmit() {
+    const newComment = new PostComment(
+      'Foo',
+      'foo',
+      this.newCommentForm.value.body,
+      new Date().getTime()
+    );
+    this.post.comments = [newComment].concat(this.post.comments);
+    const resp = this.blogService
+      .updatePost(this.key, {
+        comments: this.post.comments,
+      })
+      .then(() => this.newCommentForm.reset());
+    console.log(resp);
   }
 }

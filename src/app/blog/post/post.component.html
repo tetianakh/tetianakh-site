@@ -1,11 +1,56 @@
-<section class="bg-primary pt-5 text-white" *ngIf="post">
+<section class="bg-primary pt-5" *ngIf="post">
   <div class="container">
     <div class="row">
-      <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 pb-5">
-        <h1 class="py-5 text-white">
-          {{ post.title }}
-        </h1>
-        <div [innerHTML]="post.body"></div>
+      <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 pt-5">
+        <div class="card text-dark">
+          <div class="card-header">
+            <h1 class="card-title">
+              {{ post.title }}
+            </h1>
+            <p class="card-subtitle">{{ post.authorName }}</p>
+            <p>
+              <small>{{ post.timestamp | date: "medium" }}</small>
+            </p>
+          </div>
+          <div class="card-body" [innerHTML]="post.body"></div>
+        </div>
+      </div>
+
+      <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 py-3">
+        <h4 class="text-white ml-2">Comments</h4>
+        <p
+          class="m-2 text-white"
+          *ngIf="!post.comments || post.comments.length == 0"
+        >
+          No comments yet.
+        </p>
+
+        <div class="card">
+          <div class="card-body">
+            <form [formGroup]="newCommentForm" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <textarea
+                  type="text"
+                  class="form-control"
+                  formControlName="body"
+                ></textarea>
+              </div>
+              <button
+                class="btn-outline-primary btn float-right"
+                type="submit"
+                [disabled]="newCommentForm.disabled"
+              >
+                Add comment
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <app-post-comment
+          *ngFor="let comment of post.comments; let idx = index"
+          [comment]="comment"
+          [commentId]="idx"
+        ></app-post-comment>
       </div>
     </div>
   </div>

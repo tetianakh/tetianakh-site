@@ -6,7 +6,7 @@ export class Post {
     public body: string,
     public comments: PostComment[],
     public authorName: string,
-    public timestamp: Date,
+    public timestamp: number,
     public authorId: string = null,
     public id: string = null
   ) {}

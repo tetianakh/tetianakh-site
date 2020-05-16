@@ -8,8 +8,11 @@ import { Post } from '../post.model';
 })
 export class BlogPostPreviewComponent implements OnInit {
   @Input() post: Post;
+  postBody: string;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.postBody = this.post.body.replace(/<[^>]*>/g, '');
+  }
 }

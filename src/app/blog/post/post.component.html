@@ -12,7 +12,9 @@
               <small>{{ post.timestamp | date: "medium" }}</small>
             </p>
           </div>
-          <div class="card-body" [innerHTML]="post.body"></div>
+          <div class="card-body">
+            <dynamic-html [content]="post.body"></dynamic-html>
+          </div>
         </div>
       </div>
 

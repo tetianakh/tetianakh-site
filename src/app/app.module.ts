@@ -23,6 +23,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PostComponent } from './blog/post/post.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { PostCommentComponent } from './blog/post-comment/post-comment.component';
+import { GistComponent } from './shared/gist/gist.component';
+import { DynamicHTMLModule } from './dynamic-html';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { PostCommentComponent } from './blog/post-comment/post-comment.component
     PostComponent,
     NotFoundComponent,
     PostCommentComponent,
+    GistComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,9 @@ import { PostCommentComponent } from './blog/post-comment/post-comment.component
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     ReactiveFormsModule,
+    DynamicHTMLModule.forRoot({
+      components: [{ component: GistComponent, selector: 'app-gist' }],
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

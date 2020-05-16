@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BlogService } from '../blog.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from '../post.model';
 import { Subscription } from 'rxjs';
 
@@ -17,7 +17,8 @@ export class PostComponent implements OnInit, OnDestroy {
 
   constructor(
     private blogService: BlogService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -28,7 +29,12 @@ export class PostComponent implements OnInit, OnDestroy {
       }
       this.postSub = this.blogService
         .getPostByKey(this.key)
-        .subscribe((post) => (this.post = post));
+        .subscribe((post) => {
+          if (!post) {
+            this.router.navigate(['/not-found']);
+          }
+          this.post = post;
+        });
     });
   }
 

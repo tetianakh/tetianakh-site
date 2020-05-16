@@ -21,6 +21,7 @@ import { ShortenPipe } from './shared/shorten.pipe';
 import { NewPostComponent } from './blog/new-post/new-post.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PostComponent } from './blog/post/post.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { PostComponent } from './blog/post/post.component';
     ShortenPipe,
     NewPostComponent,
     PostComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

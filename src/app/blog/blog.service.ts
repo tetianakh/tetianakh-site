@@ -20,9 +20,7 @@ export class BlogService {
               new Post(
                 p.payload.val().title,
                 p.payload.val().body,
-                p.payload.val().authorName,
                 +p.payload.val().timestamp,
-                p.payload.val().authorId,
                 p.payload.key
               )
           );
@@ -51,17 +49,7 @@ export class BlogService {
       .object<Post>(`posts/${key}`)
       .valueChanges()
       .pipe(
-        map(
-          (post) =>
-            new Post(
-              post.title,
-              post.body,
-              post.authorName,
-              post.timestamp,
-              post.authorId,
-              key
-            )
-        )
+        map((post) => new Post(post.title, post.body, post.timestamp, key))
       );
   }
 }

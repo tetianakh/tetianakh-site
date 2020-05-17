@@ -45,7 +45,6 @@ export class NewPostComponent implements OnInit, OnDestroy {
     const newPost = new Post(
       this.newPostForm.value.title,
       this.newPostForm.value.body,
-      'Tetiana Khotiaintseva',
       new Date().getTime()
     );
     const key = this.blogService.savePost(newPost);

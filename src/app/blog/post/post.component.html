@@ -7,7 +7,9 @@
             <h1 class="card-title">
               {{ post.title }}
             </h1>
-            <p class="card-subtitle">{{ post.authorName }}</p>
+            <p class="card-subtitle">
+              <a routerLink="/">Tetiana Khotiaintseva</a>
+            </p>
             <p>
               <small>{{ post.timestamp | date: "medium" }}</small>
             </p>

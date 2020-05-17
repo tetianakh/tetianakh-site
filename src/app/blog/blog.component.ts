@@ -17,7 +17,7 @@ export class BlogComponent implements OnInit, OnDestroy {
   sub: Subscription;
   page = 0;
   pageSize = 5;
-  lastPage = 0;
+
   sectionHeight: number;
 
   constructor(
@@ -29,11 +29,6 @@ export class BlogComponent implements OnInit, OnDestroy {
   ) {
     this.sectionHeight =
       window.innerHeight - document.getElementById('footer').offsetHeight;
-    console.log(
-      window.innerHeight,
-      document.getElementById('footer').offsetHeight,
-      this.sectionHeight
-    );
   }
 
   ngOnInit(): void {
@@ -51,12 +46,20 @@ export class BlogComponent implements OnInit, OnDestroy {
         .filter((post) => post.published || this.authService.isAuthenticated)
         .sort((a, b) => b.timestamp - a.timestamp);
       this.selectPage();
-      this.lastPage = this.allPosts.length / this.pageSize;
     });
   }
+
+  get lastPage() {
+    if (this.allPosts.length === 0) {
+      return 0;
+    }
+    return Math.floor((this.allPosts.length - 1) / this.pageSize);
+  }
+
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
+
   selectPage() {
     const start = this.page * this.pageSize;
     if (

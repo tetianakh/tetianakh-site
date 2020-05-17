@@ -26,6 +26,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { GistComponent } from './shared/gist/gist.component';
 import { DynamicHTMLModule } from './dynamic-html';
 import { AuthComponent } from './auth/auth.component';
+import { PublishedTagComponent } from './shared/published-tag/published-tag.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { AuthComponent } from './auth/auth.component';
     NotFoundComponent,
     GistComponent,
     AuthComponent,
+    PublishedTagComponent,
   ],
   imports: [
     BrowserModule,

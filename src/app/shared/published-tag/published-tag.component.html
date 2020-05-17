@@ -1,0 +1,6 @@
+<span *ngIf="authService.isAuthenticated"
+  >|
+  <span [style.color]="published ? 'green' : 'red'">{{
+    published ? "published" : "draft"
+  }}</span>
+</span>

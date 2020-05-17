@@ -39,10 +39,10 @@
               {{ post.title }}
             </h1>
             <p class="card-subtitle">
-              <a routerLink="/">Tetiana Khotiaintseva</a> |
-              <span [style.color]="post.published ? 'green' : 'red'">{{
-                post.published ? "published" : "draft"
-              }}</span>
+              <a routerLink="/">Tetiana Khotiaintseva</a>
+              <app-published-tag
+                [published]="post.published"
+              ></app-published-tag>
             </p>
             <p>
               <small>{{ post.timestamp | date: "medium" }}</small>

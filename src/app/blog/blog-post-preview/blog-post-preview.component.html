@@ -3,10 +3,8 @@
     <h2>{{ post.title }}</h2>
     <div class="d-flex">
       <div class="mr-auto">
-        {{ post.timestamp | date: "medium" }} |
-        <span [style.color]="post.published ? 'green' : 'red'">{{
-          post.published ? "published" : "draft"
-        }}</span>
+        {{ post.timestamp | date: "medium" }}
+        <app-published-tag [published]="post.published"></app-published-tag>
       </div>
     </div>
   </div>

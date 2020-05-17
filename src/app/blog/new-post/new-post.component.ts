@@ -28,7 +28,6 @@ export class NewPostComponent implements OnInit {
     const newPost = new Post(
       this.newPostForm.value.title,
       this.newPostForm.value.body,
-      [],
       'Tetiana Khotiaintseva',
       new Date().getTime()
     );

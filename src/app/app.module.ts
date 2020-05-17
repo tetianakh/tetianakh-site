@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { HttpClientModule } from '@angular/common/http';
+import { DisqusModule } from 'ngx-disqus';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +23,6 @@ import { NewPostComponent } from './blog/new-post/new-post.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PostComponent } from './blog/post/post.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { PostCommentComponent } from './blog/post-comment/post-comment.component';
 import { GistComponent } from './shared/gist/gist.component';
 import { DynamicHTMLModule } from './dynamic-html';
 
@@ -43,7 +43,6 @@ import { DynamicHTMLModule } from './dynamic-html';
     NewPostComponent,
     PostComponent,
     NotFoundComponent,
-    PostCommentComponent,
     GistComponent,
   ],
   imports: [
@@ -56,6 +55,7 @@ import { DynamicHTMLModule } from './dynamic-html';
     DynamicHTMLModule.forRoot({
       components: [{ component: GistComponent, selector: 'app-gist' }],
     }),
+    DisqusModule.forRoot('tetianakh'),
   ],
   providers: [],
   bootstrap: [AppComponent],

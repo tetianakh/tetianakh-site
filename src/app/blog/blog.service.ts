@@ -21,7 +21,6 @@ export class BlogService {
               new Post(
                 p.payload.val().title,
                 p.payload.val().body,
-                p.payload.val().comments ? p.payload.val().comments : [],
                 p.payload.val().authorName,
                 +p.payload.val().timestamp,
                 p.payload.val().authorId,
@@ -58,7 +57,6 @@ export class BlogService {
             new Post(
               post.title,
               post.body,
-              post.comments ? post.comments : [],
               post.authorName,
               post.timestamp,
               post.authorId,

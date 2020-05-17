@@ -18,41 +18,12 @@
         </div>
       </div>
 
-      <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 py-3">
-        <h4 class="text-white ml-2">Comments</h4>
-        <p
-          class="m-2 text-white"
-          *ngIf="!post.comments || post.comments.length == 0"
-        >
-          No comments yet.
-        </p>
-
-        <div class="card">
+      <div class="col-lg-8 offset-lg-2 py-3">
+        <div class="card bg-white">
           <div class="card-body">
-            <form [formGroup]="newCommentForm" (ngSubmit)="onSubmit()">
-              <div class="form-group">
-                <textarea
-                  type="text"
-                  class="form-control"
-                  formControlName="body"
-                ></textarea>
-              </div>
-              <button
-                class="btn-outline-primary btn float-right"
-                type="submit"
-                [disabled]="newCommentForm.disabled"
-              >
-                Add comment
-              </button>
-            </form>
+            <disqus [identifier]="key"></disqus>
           </div>
         </div>
-
-        <app-post-comment
-          *ngFor="let comment of post.comments; let idx = index"
-          [comment]="comment"
-          [commentId]="idx"
-        ></app-post-comment>
       </div>
     </div>
   </div>

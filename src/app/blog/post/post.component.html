@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 offset-lg-2 pt-5">
-        <div class="card my-2 bg-white" *ngIf="isAuthenticated">
+        <div class="card my-2 bg-white" *ngIf="authService.isAuthenticated">
           <div class="card-body">
             <button
               class="btn btn-outline-danger ml-auto"
@@ -16,6 +16,21 @@
             >
               Edit
             </button>
+            <button
+              class="btn btn-outline-primary ml-2"
+              (click)="onPublishPost(true)"
+              *ngIf="!post.published"
+            >
+              Publish
+            </button>
+
+            <button
+              class="btn btn-outline-primary ml-2"
+              (click)="onPublishPost(false)"
+              *ngIf="post.published"
+            >
+              Hide
+            </button>
           </div>
         </div>
         <div class="card text-dark">
@@ -24,7 +39,10 @@
               {{ post.title }}
             </h1>
             <p class="card-subtitle">
-              <a routerLink="/">Tetiana Khotiaintseva</a>
+              <a routerLink="/">Tetiana Khotiaintseva</a> |
+              <span [style.color]="post.published ? 'green' : 'red'">{{
+                post.published ? "published" : "draft"
+              }}</span>
             </p>
             <p>
               <small>{{ post.timestamp | date: "medium" }}</small>

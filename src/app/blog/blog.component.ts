@@ -3,6 +3,7 @@ import { BlogService } from './blog.service';
 import { Post } from './post.model';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-blog',
@@ -20,21 +21,24 @@ export class BlogComponent implements OnInit, OnDestroy {
   constructor(
     private blogService: BlogService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       const page = params['page'];
       this.page = page ? page : 0;
-      console.log(this.page);
       if (this.allPosts) {
         this.selectPage();
       }
     });
 
     this.sub = this.blogService.posts.subscribe((posts) => {
-      this.allPosts = posts.slice().sort((a, b) => b.timestamp - a.timestamp);
+      this.allPosts = posts
+        .slice()
+        .filter((post) => post.published || this.authService.isAuthenticated)
+        .sort((a, b) => b.timestamp - a.timestamp);
       this.selectPage();
       this.lastPage = this.allPosts.length / this.pageSize;
     });
@@ -44,7 +48,10 @@ export class BlogComponent implements OnInit, OnDestroy {
   }
   selectPage() {
     const start = this.page * this.pageSize;
-    if (start >= this.allPosts.length || start < 0) {
+    if (
+      this.allPosts.length > 0 &&
+      (start >= this.allPosts.length || start < 0)
+    ) {
       this.router.navigate(['/not-found']);
     }
     this.posts = this.allPosts.slice(start, start + this.pageSize);

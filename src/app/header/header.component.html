@@ -37,7 +37,7 @@
     </div>
     <button
       class="btn btn-outline-light float-right"
-      *ngIf="isAuthenticated"
+      *ngIf="authService.isAuthenticated"
       (click)="logout()"
     >
       Sign Out

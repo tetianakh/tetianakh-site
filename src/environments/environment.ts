@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyBDFdJCoWI6-DedgFhpFgKVbdBqafWVWy4',
-    authDomain: 'tetianakh-site.firebaseapp.com',
-    databaseURL: 'https://tetianakh-site.firebaseio.com',
-    projectId: 'tetianakh-site',
-    storageBucket: 'tetianakh-site.appspot.com',
-    messagingSenderId: '1074619313817',
-    appId: '1:1074619313817:web:d150326df853f846efd208',
+    apiKey: 'AIzaSyDnLSyopuSNUxxh8FvwWZMJAEaHJKMgtHk',
+    authDomain: 'tetianakh-site-dev.firebaseapp.com',
+    databaseURL: 'https://tetianakh-site-dev.firebaseio.com',
+    projectId: 'tetianakh-site-dev',
+    storageBucket: 'tetianakh-site-dev.appspot.com',
+    messagingSenderId: '695043319149',
+    appId: '1:695043319149:web:a654cbb706f829eb592664',
   },
 };
 

@@ -6,7 +6,7 @@
         <form
           [formGroup]="newPostForm"
           (ngSubmit)="onSubmit()"
-          *ngIf="isAuthenticated; else showLogin"
+          *ngIf="authService.isAuthenticated; else showLogin"
         >
           <div class="form-group">
             <label for="post-title">Title</label>
@@ -28,9 +28,16 @@
             ></textarea>
           </div>
 
-          <div>
+          <div class="float-right">
             <button
-              class="btn btn-primary float-right"
+              class="btn btn-outline-primary"
+              *ngIf="mode === 'edit'"
+              [routerLink]="['/blog', key]"
+            >
+              Cancel
+            </button>
+            <button
+              class="btn btn-outline-secondary ml-2"
               type="submit"
               [disabled]="newPostForm.invalid"
             >

@@ -17,20 +17,15 @@ export class PostComponent implements OnInit, OnDestroy {
   keySub: Subscription;
   postSub: Subscription;
   authSub: Subscription;
-  isAuthenticated: boolean = false;
 
   constructor(
     private blogService: BlogService,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {
-    this.authSub = this.authService.user.subscribe((user) => {
-      this.isAuthenticated = !!user;
-    });
-
     this.keySub = this.route.params.subscribe((params) => {
       this.key = params['key'];
 
@@ -40,7 +35,7 @@ export class PostComponent implements OnInit, OnDestroy {
       this.postSub = this.blogService
         .getPostByKey(this.key)
         .subscribe((post) => {
-          if (!post) {
+          if (!post || (!post.published && !this.authService.isAuthenticated)) {
             this.router.navigate(['/not-found']);
           }
           this.post = post;
@@ -69,5 +64,12 @@ export class PostComponent implements OnInit, OnDestroy {
     this.router.navigate(['/blog', 'new'], {
       queryParams: { postId: this.key },
     });
+  }
+
+  onPublishPost(state: boolean) {
+    console.log(state);
+    this.blogService
+      .updatePost(this.key, { published: state })
+      .then((resp) => console.log(resp));
   }
 }

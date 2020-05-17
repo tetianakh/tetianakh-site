@@ -21,6 +21,7 @@ export class BlogService {
                 p.payload.val().title,
                 p.payload.val().body,
                 +p.payload.val().timestamp,
+                p.payload.val().published,
                 p.payload.key
               )
           );
@@ -49,7 +50,10 @@ export class BlogService {
       .object<Post>(`posts/${key}`)
       .valueChanges()
       .pipe(
-        map((post) => new Post(post.title, post.body, post.timestamp, key))
+        map(
+          (post) =>
+            new Post(post.title, post.body, post.timestamp, post.published, key)
+        )
       );
   }
 }

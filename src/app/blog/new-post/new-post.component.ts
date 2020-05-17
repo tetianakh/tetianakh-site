@@ -11,25 +11,19 @@ import { Subscription } from 'rxjs';
   templateUrl: './new-post.component.html',
   styleUrls: ['./new-post.component.sass'],
 })
-export class NewPostComponent implements OnInit, OnDestroy {
+export class NewPostComponent implements OnInit {
   newPostForm: FormGroup;
-  isAuthenticated: boolean;
-  authSub: Subscription;
   mode: string = 'new';
   key?: string;
 
   constructor(
     private blogService: BlogService,
     private router: Router,
-    private authService: AuthService,
+    public authService: AuthService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.authSub = this.authService.user.subscribe((user) => {
-      this.isAuthenticated = !!user;
-    });
-
     this.newPostForm = new FormGroup({
       title: new FormControl(null, [Validators.required]),
       body: new FormControl(null, [Validators.required]),
@@ -50,10 +44,6 @@ export class NewPostComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
-    this.authSub.unsubscribe();
-  }
-
   onSubmit() {
     if (this.newPostForm.invalid) {
       return;
@@ -62,10 +52,11 @@ export class NewPostComponent implements OnInit, OnDestroy {
       const newPost = new Post(
         this.newPostForm.value.title,
         this.newPostForm.value.body,
-        new Date().getTime()
+        new Date().getTime(),
+        false
       );
-      const key = this.blogService.savePost(newPost);
-      this.router.navigate(['blog', key]);
+      const resp = this.blogService.savePost(newPost);
+      this.router.navigate(['blog', resp.key]);
     } else {
       this.blogService.updatePost(this.key, {
         title: this.newPostForm.value.title,

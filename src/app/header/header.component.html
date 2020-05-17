@@ -35,5 +35,12 @@
         </li>
       </ul>
     </div>
+    <button
+      class="btn btn-outline-light float-right"
+      *ngIf="isAuthenticated"
+      (click)="logout()"
+    >
+      Sign Out
+    </button>
   </div>
 </nav>

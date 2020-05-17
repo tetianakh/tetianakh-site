@@ -1,9 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { BlogService } from './blog.service';
 import { Post } from './post.model';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-blog',
@@ -17,13 +18,23 @@ export class BlogComponent implements OnInit, OnDestroy {
   page = 0;
   pageSize = 5;
   lastPage = 0;
+  sectionHeight: number;
 
   constructor(
     private blogService: BlogService,
     private route: ActivatedRoute,
     private router: Router,
-    public authService: AuthService
-  ) {}
+    public authService: AuthService,
+    @Inject(DOCUMENT) document: HTMLDocument
+  ) {
+    this.sectionHeight =
+      window.innerHeight - document.getElementById('footer').offsetHeight;
+    console.log(
+      window.innerHeight,
+      document.getElementById('footer').offsetHeight,
+      this.sectionHeight
+    );
+  }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -49,6 +60,7 @@ export class BlogComponent implements OnInit, OnDestroy {
   selectPage() {
     const start = this.page * this.pageSize;
     if (
+      this.allPosts &&
       this.allPosts.length > 0 &&
       (start >= this.allPosts.length || start < 0)
     ) {

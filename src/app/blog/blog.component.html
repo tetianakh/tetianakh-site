@@ -1,6 +1,12 @@
-<section class="bg-light mt-5">
+<section class="bg-light pt-5" [style.min-height.px]="sectionHeight">
   <h1 class="display-2 pt-5 pb-3 text-primary text-center">Blog</h1>
-  <div class="bg-primary py-3">
+  <p
+    *ngIf="allPosts && allPosts.length == 0"
+    class="lead text-primary text-center mb-0"
+  >
+    There are no posts yet.
+  </p>
+  <div class="bg-primary py-3" *ngIf="allPosts && allPosts.length > 0">
     <div class="container">
       <div class="row">
         <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">

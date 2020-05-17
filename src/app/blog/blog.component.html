@@ -7,6 +7,25 @@
           <div class="col" *ngFor="let post of posts">
             <app-blog-post-preview [post]="post"></app-blog-post-preview>
           </div>
+          <div class="col pb-5">
+            <button
+              class="btn btn-outline-light float-left"
+              *ngIf="page > 0"
+              routerLink="/blog"
+              [queryParams]="{ page: +page - 1 }"
+            >
+              ← Newer Posts
+            </button>
+
+            <button
+              class="btn btn-outline-light float-right"
+              *ngIf="page < lastPage"
+              routerLink="/blog"
+              [queryParams]="{ page: +page + 1 }"
+            >
+              → Older Posts
+            </button>
+          </div>
         </div>
       </div>
     </div>

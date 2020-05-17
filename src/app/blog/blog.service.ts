@@ -14,7 +14,6 @@ export class BlogService {
       .list<Post>('posts')
       .snapshotChanges()
       .pipe(
-        tap((resp) => console.log(resp)),
         map((posts) => {
           return posts.map(
             (p) =>

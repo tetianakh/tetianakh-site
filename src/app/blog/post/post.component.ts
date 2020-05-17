@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from '../post.model';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-post',
@@ -15,14 +16,21 @@ export class PostComponent implements OnInit, OnDestroy {
   post: Post;
   keySub: Subscription;
   postSub: Subscription;
+  authSub: Subscription;
+  isAuthenticated: boolean = false;
 
   constructor(
     private blogService: BlogService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
+    this.authSub = this.authService.user.subscribe((user) => {
+      this.isAuthenticated = !!user;
+    });
+
     this.keySub = this.route.params.subscribe((params) => {
       this.key = params['key'];
 
@@ -47,5 +55,19 @@ export class PostComponent implements OnInit, OnDestroy {
     if (this.postSub) {
       this.postSub.unsubscribe();
     }
+    if (this.authSub) {
+      this.authSub.unsubscribe();
+    }
+  }
+
+  onDeletePost() {
+    this.blogService.deletePost(this.key);
+    this.router.navigate(['/blog']);
+  }
+
+  obEditPost() {
+    this.router.navigate(['/blog', 'new'], {
+      queryParams: { postId: this.key },
+    });
   }
 }

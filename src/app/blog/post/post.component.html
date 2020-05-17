@@ -2,6 +2,22 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 offset-lg-2 pt-5">
+        <div class="card my-2 bg-white" *ngIf="isAuthenticated">
+          <div class="card-body">
+            <button
+              class="btn btn-outline-danger ml-auto"
+              (click)="onDeletePost()"
+            >
+              Delete
+            </button>
+            <button
+              class="btn btn-outline-secondary ml-2"
+              (click)="obEditPost()"
+            >
+              Edit
+            </button>
+          </div>
+        </div>
         <div class="card text-dark">
           <div class="card-header">
             <h1 class="card-title">
@@ -14,6 +30,7 @@
               <small>{{ post.timestamp | date: "medium" }}</small>
             </p>
           </div>
+
           <div class="card-body">
             <dynamic-html [content]="post.body"></dynamic-html>
           </div>

@@ -35,12 +35,21 @@
         </li>
       </ul>
     </div>
-    <button
-      class="btn btn-outline-light float-right"
-      *ngIf="authService.isAuthenticated"
-      (click)="logout()"
-    >
-      Sign Out
-    </button>
+    <div class="float-right">
+      <button
+        class="btn btn-outline-light"
+        *ngIf="authService.isAuthenticated"
+        routerLink="/blog/new"
+      >
+        New
+      </button>
+      <button
+        class="btn btn-outline-light ml-2"
+        *ngIf="authService.isAuthenticated"
+        (click)="logout()"
+      >
+        Sign Out
+      </button>
+    </div>
   </div>
 </nav>

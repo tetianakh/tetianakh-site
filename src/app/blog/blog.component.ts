@@ -14,9 +14,11 @@ import { DOCUMENT } from '@angular/common';
 export class BlogComponent implements OnInit, OnDestroy {
   allPosts: Post[];
   posts: Post[];
-  sub: Subscription;
+  postsSub: Subscription;
+  userSub: Subscription;
   page = 0;
   pageSize = 5;
+  isAuthenticated: boolean;
 
   sectionHeight: number;
 
@@ -40,11 +42,13 @@ export class BlogComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.sub = this.blogService.posts.subscribe((posts) => {
-      this.allPosts = posts
-        .slice()
-        .filter((post) => post.published || this.authService.isAuthenticated)
-        .sort((a, b) => b.timestamp - a.timestamp);
+    this.postsSub = this.blogService.posts.subscribe((posts) => {
+      this.allPosts = posts.slice();
+      this.selectPage();
+    });
+
+    this.userSub = this.authService.user.subscribe((user) => {
+      this.isAuthenticated = this.authService.isAuthenticated;
       this.selectPage();
     });
   }
@@ -57,18 +61,22 @@ export class BlogComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    this.postsSub.unsubscribe();
+    this.userSub.unsubscribe();
   }
 
   selectPage() {
+    const visiblePosts = this.allPosts
+      .filter((post) => post.published || this.authService.isAuthenticated)
+      .sort((a, b) => b.timestamp - a.timestamp);
     const start = this.page * this.pageSize;
     if (
-      this.allPosts &&
-      this.allPosts.length > 0 &&
-      (start >= this.allPosts.length || start < 0)
+      visiblePosts &&
+      visiblePosts.length > 0 &&
+      (start >= visiblePosts.length || start < 0)
     ) {
       this.router.navigate(['/not-found']);
     }
-    this.posts = this.allPosts.slice(start, start + this.pageSize);
+    this.posts = visiblePosts.slice(start, start + this.pageSize);
   }
 }

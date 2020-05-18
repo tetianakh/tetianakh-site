@@ -1,6 +1,5 @@
 import {
   Component,
-  Input,
   ViewChild,
   ElementRef,
   AfterViewInit,
@@ -16,33 +15,54 @@ import {
 })
 export class GistComponent implements OnInit, AfterViewInit {
   @ViewChild('iframe') iframe: ElementRef;
-  @Input() file: string;
-  gistid: string;
+  src: string;
+  gistId: string;
+  hasFooter: boolean;
 
   constructor(private elementRef: ElementRef) {}
 
   ngOnInit() {
-    this.gistid = this.elementRef.nativeElement.getAttribute('gistid');
+    this.gistId = this.elementRef.nativeElement.getAttribute('gistId');
+    const file = this.elementRef.nativeElement.getAttribute('file');
+    this.src = `https://gist.github.com/${this.gistId}.js?file=${
+      file ? file : ''
+    }`;
+    const footer = this.elementRef.nativeElement.getAttribute('footer');
+    this.hasFooter = footer === 'true';
   }
 
   ngAfterViewInit() {
-    let fileName = this.file ? this.file : '';
-    this.iframe.nativeElement.id = 'gist-' + this.gistid;
-    let doc =
-      this.iframe.nativeElement.contentDocument ||
-      this.iframe.nativeElement.contentElement.contentWindow;
     let content = `
         <html>
         <head>
-          <base target="_parent">
+          <base target="_blank">
+          <style>
+          .gist-meta {
+            display: ${this.hasFooter ? 'block' : 'none'};
+          }
+          </style>
         </head>
-        <body onload="parent.document.getElementById('${this.iframe.nativeElement.id}')">
-        <script type="text/javascript" src="https://gist.github.com/${this.gistid}.js?file=${fileName}"></script>
+        <body onload="parent.document.getElementById('${this.gistId}')">
+        <script type="text/javascript" src=${this.src}></script>
         </body>
       </html>
     `;
-    doc.open();
-    doc.write(content);
-    doc.close();
+    this.doc.open();
+    this.doc.write(content);
+    this.doc.close();
+  }
+
+  get doc() {
+    return (
+      this.iframe.nativeElement.contentDocument ||
+      this.iframe.nativeElement.contentElement.contentWindow
+    );
+  }
+
+  onLoad() {
+    const gist = this.doc.getElementsByClassName('gist')[0];
+    if (gist) {
+      this.iframe.nativeElement.style.height = gist.scrollHeight + 'px';
+    }
   }
 }

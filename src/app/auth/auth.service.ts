@@ -5,9 +5,11 @@ import { Observable, Subscription } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  public isAuthenticated: boolean = false;
+  public user: Observable<any>;
+  public isAuthenticated: boolean = null;
 
   constructor(private auth: AngularFireAuth) {
+    this.user = this.auth.user;
     this.auth.user.subscribe((user) => {
       this.isAuthenticated = !!user;
     });
